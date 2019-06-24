@@ -1,0 +1,77 @@
+Visit https://console.developers.google.com[https://console.developers.google.com] and create a new project:
+
+image::google-1.png[]
+
+You will also need to create OAuth 2.0 credentials for the project since Google does not do that automatically. From the sidebar, click the `Credentials` tab, the click `Create credentials` and choose `OAuth client ID` from the dropdown.
+
+image::google-2.png[]
+
+The Google Console will prompt for some information about your application such as the product name, a home page and a logo. On the next page, select *Web Application* type, and enter the redirect URL where the Micronaut app we will build next will wait for the callback.
+
+image::google-4.png[]
+
+You will then receive a client ID and secret.
+
+image::google-3.png[]
+
+To use OAuth 2.0 integration in your Micronaut App, add the next dependency:
+
+[source,java]
+.gradle.properties
+----
+include::{sourceDir}/gradle.properties[]
+----
+[source,java]
+.build.gradle
+----
+dependencies {
+  ...
+  ..
+include::{sourceDir}/build.gradle[tag=oauth2]
+}
+----
+
+Add also JWT https://docs.micronaut.io/latest/guide/index.html#jwt[Micronaut’s JWT support] dependencies:
+
+[source,java]
+.build.gradle
+----
+dependencies {
+  ...
+  ..
+include::{sourceDir}/build.gradle[tag=jwt]
+}
+----
+
+
+Add the following Oauth2 Configuration:
+
+[source,java]
+.src/main/resources/application.yml
+----
+include::{sourceDir}/src/main/resources/application.yml[tag=oauth2]
+----
+
+<1> Enable security
+<2> The provider identifier should match the last part of the url you entered as a redirect url `/oauth/callback/google`
+<3> Client Secret. See previous screenshot.
+<4> Client ID. See previous screenshot.
+<5> `issuer` url. It allows micronaut to discover the configuration of the OpenID Connect server.
+<6> ID Token is a JWT token. We need to enable https://docs.micronaut.io/latest/guide/index.html#jwt[Micronaut’s JWT support] to validate it.
+<7> Once validated, we are going to save the ID Token in a Cookie. To read in subsequent requests, enable https://docs.micronaut.io/latest/guide/index.html#cookieToken[Cookie Token Reader].
+<8> Enable https://docs.micronaut.io/snapshot/guide/index.html#logout[Logout Controller]
+<9> Accept GET request to the `/logout` endpoint.
+
+The previous configuration uses several placeholders. You will need to setup `OAUTH_CLIENT_ID`, `OAUTH_CLIENT_SECRET`, `OIDC_ISSUER_DOMAIN` and `OIDC_ISSUER_AUTHSERVERID` environment variables.
+
+[soruce, bash]
+----
+export OAUTH_CLIENT_ID=XXXXXXXXXX
+export OAUTH_CLIENT_SECRET=YYYYYYYYYY
+----
+
+Check Google https://accounts.google.com/.well-known/openid-configuration[.well-known/openid-configuration documentation].
+
+We want to use an **Authorization Code** grant type flow which it is described in the following diagram:
+
+image::diagramm.png[]

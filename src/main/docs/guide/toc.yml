@@ -1,0 +1,14 @@
+gettingStarted: 
+  title: Getting Started
+  requirements: What you will need
+  solution: Solution
+usingsnapshot: Using Snapshots
+writingTheApp:
+  title: Writing the App
+  views: Views
+  oauth2: OAuth 2.0
+  home: Home
+  runningTheApp: Running the Application
+  hosteddomain: Custom ID token claims validation
+learnmore:
+  title: Learn More

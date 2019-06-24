@@ -1,0 +1,41 @@
+Imagine you want to allow sign-in with Google but only to users' in your organization.
+
+Google OAuth consent screen settings allows you to do that:
+
+image::google-5.png[]
+
+However, we could also achieve this programmatically. Google id token contains a claim named `hd` which stands for `hosted domain`.
+
+We can create a configuration object:
+
+[source,java]
+.src/main/java/example/micronaut/ApplicationConfiguration.java
+----
+include::{sourceDir}/src/main/java/example/micronaut/ApplicationConfiguration.java[]
+----
+
+Backed by a `@ConfigurationProperties` annotated class:
+
+[source,java]
+.src/main/java/example/micronaut/ApplicationConfigurationProperties.java
+----
+include::{sourceDir}/src/main/java/example/micronaut/ApplicationConfigurationProperties.java[]
+----
+
+and then implement a `OpenIdClaimsValidator` bean. Micronaut validateds the id token against every bean of type `OpenIdClaimsValidator`. If the id token `hd` claim does not match the value configured, it is considered invalid.
+
+[source,java]
+.src/main/java/example/micronaut/HostedDomainClaimValidator.java
+----
+include::{sourceDir}/src/main/java/example/micronaut/HostedDomainClaimValidator.java[]
+----
+
+Add to `src/main/resources/application.yaml`
+
+[source, yaml]
+----
+app:
+  hosted-domain: 'objectcomputing.com'
+----
+
+if you start the app, you will only be able to sign in with a Google Account within OCI organization.
