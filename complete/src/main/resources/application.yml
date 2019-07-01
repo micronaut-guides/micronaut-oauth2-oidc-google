@@ -17,8 +17,13 @@ micronaut:
         enabled: true # <6>
         cookie:
           enabled: true # <7>
-    endpoints:
+        signatures:
+          secret:
+            generator: 
+              secret: pleaseChangeThisSecretForANewOne 
+endpoints:
       logout:
         enabled: true # <8>
         get-allowed: true # <9>
+
 #end::oauth2[]
