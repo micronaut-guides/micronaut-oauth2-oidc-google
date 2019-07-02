@@ -3,3 +3,6 @@
 .gradle
 build
 *.iml
+.settings
+.project
+bin
