@@ -22,7 +22,7 @@ Backed by a `@ConfigurationProperties` annotated class:
 include::{sourceDir}/src/main/java/example/micronaut/ApplicationConfigurationProperties.java[]
 ----
 
-and then implement a `OpenIdClaimsValidator` bean. Micronaut validateds the id token against every bean of type `OpenIdClaimsValidator`. If the id token `hd` claim does not match the value configured, it is considered invalid.
+and then implement a `OpenIdClaimsValidator` bean. Micronaut validates the id token against every bean of type `OpenIdClaimsValidator`. If the id token `hd` claim does not match the value configured, it is considered invalid.
 
 [source,java]
 .src/main/java/example/micronaut/HostedDomainClaimValidator.java
