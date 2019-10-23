@@ -19,7 +19,7 @@ micronaut:
           enabled: true # <7>
         signatures:
           secret:
-            generator: <8>
+            generator: # <8>
               secret: pleaseChangeThisSecretForANewOne <9>
 endpoints:
       logout:
