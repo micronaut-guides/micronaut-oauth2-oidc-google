@@ -11,3 +11,5 @@ writingTheApp:
   hosteddomain: Custom ID token claims validation
 learnmore:
   title: Learn More
+help:
+  title: Help with Micronaut
