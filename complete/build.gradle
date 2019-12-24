@@ -31,7 +31,7 @@ dependencies {
     implementation "io.micronaut:micronaut-http-client"
 
     //tag::views[]
-    implementation "io.micronaut:micronaut-views"
+    implementation "io.micronaut:micronaut-views-thymeleaf"
     //end::views[]
 
     //tag::thymeleaf[]
