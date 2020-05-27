@@ -52,8 +52,7 @@ Add the following Oauth2 Configuration:
 include::{sourceDir}/src/main/resources/application.yml[tag=oauth2]
 ----
 
-
-<1> Set `micronaut.security.authentication` as `idtoken`. The idtoken provided by Google when the OAuth 2.0 Authorization code flow ends will be saved in a cookie. The id token is a signed JWT. For every request, Micronaut extracts the JWT from the Cookie, validates the JWT signature with the remote Json Web Key Set exposed by Google. JWKS is exposed by Google via the `jws-uri` entry of https://accounts.google.com/.well-known/openid-configuration
+<1> Set `micronaut.security.authentication` as `idtoken`. The idtoken provided by Google when the OAuth 2.0 Authorization code flow ends will be saved in a cookie. The id token is a signed JWT. For every request, Micronaut extracts the JWT from the Cookie and validates the JWT signature with the remote Json Web Key Set exposed by Google. JWKS is exposed by Google via the `jws-uri` entry of https://accounts.google.com/.well-known/openid-configuration
 <2> Client Secret. See previous screenshot.
 <3> Client ID. See previous screenshot.
 <4> `issuer` url. It allows micronaut to discover the configuration of the OpenID Connect server.
