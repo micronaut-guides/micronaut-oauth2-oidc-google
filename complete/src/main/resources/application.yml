@@ -6,14 +6,12 @@ micronaut:
     authentication: idtoken # <1>
     oauth2:
       clients:
-        google: # <1>
-          client-id: '${OAUTH_CLIENT_ID}'  # <2>
-          client-secret: '${OAUTH_CLIENT_SECRET}' # <3>
+        google: # <2>
+          client-id: '${OAUTH_CLIENT_ID}'  # <3>
+          client-secret: '${OAUTH_CLIENT_SECRET}' # <4>
           openid:
-            issuer: 'https://accounts.google.com' # <4>
+            issuer: 'https://accounts.google.com' # <5>
     endpoints:
       logout:
-        get-allowed: true # <5>
+        get-allowed: true # <6>
 #end::oauth2[]
-app:
-  hosted-domain: 'objectcomputing.com'
