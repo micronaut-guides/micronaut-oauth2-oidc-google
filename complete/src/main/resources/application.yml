@@ -7,8 +7,8 @@ micronaut:
     oauth2:
       clients:
         google: # <1>
-          client-id: '290477064382-nt0b8v8bkeeffqppv965prbt70fhficf.apps.googleusercontent.com'  # <2>
-          client-secret: 'g_tMz44_IHCigG5ffNt5ISBp' # <3>
+          client-id: '${OAUTH_CLIENT_ID}'  # <2>
+          client-secret: '${OAUTH_CLIENT_SECRET}' # <3>
           openid:
             issuer: 'https://accounts.google.com' # <4>
     endpoints:
