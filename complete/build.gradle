@@ -16,6 +16,15 @@ repositories {
 configurations {
     // for dependencies that are needed for development only
     developmentOnly
+
+    all {
+        resolutionStrategy {
+            force 'io.micronaut:micronaut-security-annotations:2.0.0.BUILD-SNAPSHOT'
+            force 'io.micronaut:micronaut-security:2.0.0.BUILD-SNAPSHOT'
+            force 'io.micronaut:micronaut-security-jwt:2.0.0.BUILD-SNAPSHOT'
+            force 'io.micronaut.configuration:micronaut-security-oauth2:2.0.0.BUILD-SNAPSHOT'
+        }
+    }
 }
 
 dependencies {
@@ -40,12 +49,13 @@ dependencies {
     //end::thymeleaf[]
 
     //tag::jwt[]
-    annotationProcessor("io.micronaut:micronaut-security-annotations")
-    implementation "io.micronaut:micronaut-security-jwt"
+    annotationProcessor("io.micronaut:micronaut-security-annotations:2.0.0.BUILD-SNAPSHOT")
+    implementation "io.micronaut:micronaut-security:2.0.0.BUILD-SNAPSHOT"
+    implementation "io.micronaut:micronaut-security-jwt:2.0.0.BUILD-SNAPSHOT"
     //end::jwt[]
 
     //tag::oauth2[]
-    implementation "io.micronaut.configuration:micronaut-security-oauth2"
+    implementation "io.micronaut.configuration:micronaut-security-oauth2:2.0.0.BUILD-SNAPSHOT"
     //end::oauth2[]
 
     runtimeOnly("ch.qos.logback:logback-classic:1.2.3")
