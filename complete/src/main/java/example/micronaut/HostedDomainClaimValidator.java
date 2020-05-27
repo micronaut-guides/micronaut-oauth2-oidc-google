@@ -21,7 +21,9 @@ public class HostedDomainClaimValidator implements OpenIdClaimsValidator {
     }
 
     @Override
-    public boolean validate(OpenIdClaims claims, OauthClientConfiguration clientConfiguration, OpenIdProviderMetadata providerMetadata) {
+    public boolean validate(OpenIdClaims claims,
+                            OauthClientConfiguration clientConfiguration,
+                            OpenIdProviderMetadata providerMetadata) {
         Object hd = claims.get(HOSTED_DOMAIN_CLAIM);
         return hd instanceof String && ((String) hd).equalsIgnoreCase(hostedDomain);
     }
