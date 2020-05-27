@@ -1,5 +1,6 @@
 package example.micronaut;
 
+import edu.umd.cs.findbugs.annotations.NonNull;
 import io.micronaut.context.annotation.ConfigurationProperties;
 import io.micronaut.context.annotation.Requires;
 
@@ -7,13 +8,15 @@ import io.micronaut.context.annotation.Requires;
 @ConfigurationProperties("app")
 public class ApplicationConfigurationProperties implements ApplicationConfiguration {
 
+    @NonNull
     private String hostedDomain;
 
-    public void setHostedDomain(String hostedDomain) {
+    public void setHostedDomain(@NonNull String hostedDomain) {
         this.hostedDomain = hostedDomain;
     }
 
     @Override
+    @NonNull
     public String getHostedDomain() {
         return hostedDomain;
     }
