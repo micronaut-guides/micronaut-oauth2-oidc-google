@@ -38,8 +38,8 @@ dependencies {
     //end::thymeleaf[]
 
     //tag::jwt[]
-    annotationProcessor "io.micronaut:micronaut-security"
     implementation "io.micronaut:micronaut-security-jwt"
+    annotationProcessor("io.micronaut:micronaut-security-annotations")
     //end::jwt[]
 
     //tag::oauth2[]
