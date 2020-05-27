@@ -3,24 +3,17 @@ micronaut:
   application:
     name: complete
   security:
+    authentication: idtoken # <1>
     oauth2:
-      enabled: true
       clients:
         google: # <1>
-          client-id: '${OAUTH_CLIENT_ID}'  # <2>
-          client-secret: '${OAUTH_CLIENT_SECRET}' # <3>
+          client-id: '290477064382-nt0b8v8bkeeffqppv965prbt70fhficf.apps.googleusercontent.com'  # <2>
+          client-secret: 'g_tMz44_IHCigG5ffNt5ISBp' # <3>
           openid:
             issuer: 'https://accounts.google.com' # <4>
-    token:
-      jwt:
-        cookie:
-          enabled: true # <5>
-        signatures:
-          secret:
-            generator: # <6>
-              secret: pleaseChangeThisSecretForANewOne <7>
     endpoints:
       logout:
-        enabled: true # <8>
-        get-allowed: true # <9>
+        get-allowed: true # <5>
 #end::oauth2[]
+app:
+  hosted-domain: 'objectcomputing.com'

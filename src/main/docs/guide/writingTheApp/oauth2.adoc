@@ -52,17 +52,14 @@ Add the following Oauth2 Configuration:
 include::{sourceDir}/src/main/resources/application.yml[tag=oauth2]
 ----
 
-<1> The provider identifier should match the last part of the url you entered as a redirect url `/oauth/callback/google`
+
+<1> Set `micronaut.security.authentication` as `idtoken`. The idtoken provided by Google when the OAuth 2.0 Authorization code flow ends will be saved in a cookie. The id token is a signed JWT. For every request, Micronaut extracts the JWT from the Cookie, validates the JWT signature with the remote Json Web Key Set exposed by Google. JWKS is exposed by Google via the `jws-uri` entry of https://accounts.google.com/.well-known/openid-configuration
 <2> Client Secret. See previous screenshot.
 <3> Client ID. See previous screenshot.
 <4> `issuer` url. It allows micronaut to discover the configuration of the OpenID Connect server.
-<6> Once validated, we are going to save the ID Token in a Cookie. To read in subsequent requests, enable https://micronaut-projects.github.io/micronaut-security/latest/guide/index.html#cookieToken[Cookie Token Reader].
-<7> You can create a http://docs.micronaut.io/latest/api/io/micronaut/security/token/jwt/signature/secret/SecretSignatureConfiguration.html[SecretSignatureConfiguration] named generator via configuration as illustrated above. The generator signature is used to sign the issued JWT claims.
-<8> Change this by your own secret and keep it safe (do not store this in your VCS)
-<9> Enable https://micronaut-projects.github.io/micronaut-security/latest/guide/index.html#logout#logout[Logout Controller]
-<10> Accept GET request to the `/logout` endpoint.
+<5> Accept GET request to the `/logout` endpoint.
 
-The previous configuration uses several placeholders. You will need to setup `OAUTH_CLIENT_ID`, `OAUTH_CLIENT_SECRET`, `OIDC_ISSUER_DOMAIN` and `OIDC_ISSUER_AUTHSERVERID` environment variables.
+The previous configuration uses several placeholders. You will need to setup `OAUTH_CLIENT_ID`, `OAUTH_CLIENT_SECRET` environment variables.
 
 [soruce, bash]
 ----
