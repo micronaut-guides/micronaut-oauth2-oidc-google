@@ -1,7 +1,9 @@
-#tag::oauth2[]
 micronaut:
   application:
     name: complete
+#tag::oauth2[]
+---
+micronaut:
   security:
     authentication: idtoken # <1>
     oauth2:
